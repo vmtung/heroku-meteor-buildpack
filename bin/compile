@@ -84,7 +84,7 @@ cd $APP_SOURCE_DIR
 
 # If we use npm on root, run npm install.
 if [ -e "$APP_SOURCE_DIR"/package.json ]; then
-  npm install
+  $METEOR npm install
 fi
 
 # Now on to bundling. Don't put the bundle in $APP_CHECKOUT_DIR, or it will
