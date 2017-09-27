@@ -53,7 +53,7 @@ PATH="$METEOR_DIR/.meteor:$COMPILE_DIR/bin:$PATH"
 # Install node
 #
 echo "-----> Installing node"
-NODE_VERSION=`curl -sS --get https://semver.io/node/resolve/7.7.x`
+NODE_VERSION=`curl -sS --get https://semver.io/node/resolve/4.8.1`
 NODE_URL="http://s3pository.heroku.com/node/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz"
 curl -sS $NODE_URL -o - | tar -zxf - -C $COMPILE_DIR --strip 1
 # Export some environment variables for npm to use when compiling stuff.
@@ -108,7 +108,7 @@ echo "-----> Pre-launching Meteor to create packages assets and prevent bundling
     HOME=$METEOR_DIR timeout -s9 60 $METEOR --settings settings.json || true
 fi
 # </hack>
-npm -v
+npm install -g node-sass
 echo "-----> Building Meteor with ROOT_URL: $ROOT_URL"
 HOME=$METEOR_DIR $METEOR build --server $ROOT_URL --directory $BUNDLE_DEST
 mv $BUNDLE_DEST/bundle "$COMPILE_DIR/app"
