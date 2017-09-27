@@ -53,7 +53,7 @@ PATH="$METEOR_DIR/.meteor:$COMPILE_DIR/bin:$PATH"
 # Install node
 #
 echo "-----> Installing node"
-NODE_VERSION=`curl -sS --get https://semver.io/node/resolve/0.10.x`
+NODE_VERSION=`curl -sS --get https://semver.io/node/resolve/4.4.7`
 NODE_URL="http://s3pository.heroku.com/node/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz"
 curl -sS $NODE_URL -o - | tar -zxf - -C $COMPILE_DIR --strip 1
 # Export some environment variables for npm to use when compiling stuff.
@@ -114,6 +114,8 @@ HOME=$METEOR_DIR $METEOR build --server $ROOT_URL --directory $BUNDLE_DEST
 mv $BUNDLE_DEST/bundle "$COMPILE_DIR/app"
 rmdir $BUNDLE_DEST
 
+echo "BUILD METOR DONE"
+echo "-----> Installing packages at $COMPILE_DIR/app/programs/server"
 # If we use npm, run npm install.
 if [ -e "$COMPILE_DIR"/app/programs/server/package.json ]; then
   cd "$COMPILE_DIR"/app/programs/server && npm install
