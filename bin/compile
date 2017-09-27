@@ -108,6 +108,8 @@ echo "-----> Pre-launching Meteor to create packages assets and prevent bundling
     HOME=$METEOR_DIR timeout -s9 60 $METEOR --settings settings.json || true
 fi
 # </hack>
+echo "-----> Test npm command"
+npm install -g mkdirp
 npm install -g node-sass
 echo "-----> Building Meteor with ROOT_URL: $ROOT_URL"
 HOME=$METEOR_DIR $METEOR build --server $ROOT_URL --directory $BUNDLE_DEST
